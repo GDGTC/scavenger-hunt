@@ -2,11 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>SH</title>
+  <title>Scavenger Hunt</title>
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
-
-
-
 </head>
 <body>
 <input type="button" value="update1" onclick="update1();" />
@@ -14,64 +11,9 @@
 <input id="loginbutton" type="button" value="login" onclick="login();">
 <input id="logoutbutton" type="button" value="logout" onclick="logout();">
 
+<div id="shwrapper"></div>
 
-  <script>
-    var ref = new Firebase('https://cldwn.firebaseio.com/intro/web/data');
-    var usersRef = ref.child("users");
-    usersRef.set({
-      alanisawesome: {
-        date_of_birth: "June 23, 1912",
-        full_name: "Alan Turing"
-      },
-      gracehop: {
-        date_of_birth: "December 9, 1906",
-        full_name: "Grace Hopper"
-      }
-    });
-
-function update1(){
-    var hopperRef = usersRef.child("gracehop");
-    hopperRef.update({
-      "nickname": "Amazing Grace"
-    });
-}
-
-//
-var authData = ref.getAuth();
-
-if (authData) {
-  console.log("User " + authData.uid + " is logged in with " + authData.provider);
-  showLogin(false);
-} else {
-  console.log("User is logged out");
-  showLogin(true);
-}
-
-function showLogin(tf){
-    document.getElementById('loginbutton').style.display = tf == true ? 'block' : 'none';
-    document.getElementById('logoutbutton').style.display = tf == true ? 'none' : 'block';
-}
-
-// Create a callback to handle the result of the authentication
-function authHandler(error, authData) {
-  if (error) {
-    console.log("Login Failed!", error);
-    showLogin(true);
-  } else {
-    console.log("Authenticated successfully with payload:", authData);
-  showLogin(false);
-  }
-}
-
-function login(){
-    ref.authWithOAuthPopup("google", authHandler);
-}
-function logout(){
-    ref.unauth();
-    showLogin(true);
-}
-
-</script>
+<script src="hunt.js"></script>
 
 </body>
 </html>
