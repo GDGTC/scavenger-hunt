@@ -23,15 +23,18 @@ function authHandler(error, authData) {
     showLogin(true);
   } else {
     console.log("Authenticated successfully with payload:", authData);
+
+    //  save the info about the user who just logged in
     ref.child("users").child(authData.uid).set({
-      provider: authData.provider,
+      provider: authData.provider,    // only using google for this but whatevs
       name: authData.google.displayName,
-      googleObject: authData.google
+      googleObject: authData.google  // tuck the whole google obj away for later
     });
   showLogin(false);
   }
 }
 
+//  better to have user action call a popup for browser security
 function login(){
     ref.authWithOAuthPopup("google", authHandler, {
       remember: "sessionOnly",
@@ -51,22 +54,40 @@ if (authData) {
   if(window.location.hash) {
     // Fragment exists
     var hashval = window.location.hash.substring(1);
-    //alert(hashval);
 
-//  Trying to seach the hunt/endpoints and see if the enpoint matches the has value.  Fruitless.  going to bed.
+    //pull in json from db ***
+    ref.on("value", function(snapshot) {
+      //ref.off("value"); //stop listening
 
+      returnedData = snapshot.val();
+      usersData = returnedData.users;
+      checkPoints = returnedData.checkpoints;
 
-//pull in json from db ***
-  ref.on("value", function(snapshot) {
-    ref.off("value");
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
 
-    returnedData = snapshot.val();
-    usersData = returnedData.users;
-    checkPoints = returnedData.checkpoints;
+    //  Check on the endpoint that was passed in the hasvalue
+    var huntnode = ref.child('endpoints/'+hashval);
+    huntnode.on("value", function(snapshot) {
+      //huntnode.off("value");
+      console.log(snapshot.val());
+      nodeData = snapshot.val();
+      if(!nodeData){
+        console.log("Data Not Here");
+      }else{
+        console.log("Found some " + hashval);
 
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
+        //  save the scavenger hunt item to the user
+        ref.child("users").child(authData.uid).child("badges").child(hashval).set({          
+          endpoint: nodeData,
+          foundAt: Firebase.ServerValue.TIMESTAMP
+        });
+      }
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
 
 
 
