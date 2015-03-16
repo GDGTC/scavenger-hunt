@@ -41,7 +41,7 @@ function authHandler(error, authData) {
 //  better to have user action call a popup for browser security
 function login(){
     ref.authWithOAuthPopup("google", authHandler, {
-      remember: "sessionOnly",
+      remember: "default", 
       scope: "email"
     });
 }
@@ -58,6 +58,14 @@ function hexDiv(badgename, iseven){
 function showStatus(){
   var stateObj = { foo: "bar" };
   history.replaceState(stateObj, "page 2", "index.html");  
+
+    ref.on("value", function(snapshot) {
+      myData.off("value"); //stop listening
+
+      fbData = snapshot.val();
+      console.log(fbData);
+    });
+
 
     var myData = ref.child("users").child(authData.uid);
     //pull in json from db ***
