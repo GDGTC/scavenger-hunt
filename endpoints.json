@@ -1,0 +1,83 @@
+{
+  "polymer" : {
+    "name": "Polymer",
+    "img" : "polymer.png",
+    "url" : "http://polymer-project.com",
+    "type":"product"
+  },
+  "cloudcompute":{
+    "name": "Cloud Compute Platform",
+    "img" : "cloudcompute.png",
+    "url" : "http://cloud.google.com/compute",
+    "type":"product"
+  },
+  "angular":{
+    "name": "Angular",
+    "img" : "angular.png",
+    "url" : "http://angular.org",
+    "type":"product"
+  },
+  "appengine":{
+    "name": "App Engine",
+    "img" : "appengine.png",
+    "url" : "http://cloud.google.com/appengine",
+    "type":"product"
+  },
+  "analytics":{
+    "name": "Analytics",
+    "img" : "analytics.png",
+    "url" : "http://cloud.google.com/compute",
+    "type":"product"
+  },
+  "android":{
+    "name": "Android",
+    "img" : "android.png",
+    "url" : "http://developer.android.com",
+    "type":"product"
+  },
+  "chrome":{
+    "name": "Chrome",
+    "url" : "http://developer.chrome.com",
+    "type":"product"
+  },
+  "cloudplatform":{
+    "name": "Cloud Platform",
+    "url" : "http://cloud.google.com",
+    "type":"product"
+  },
+  "maps":{
+    "name": "Goolge Maps",
+    "url" : "http://developers.google.com/maps",
+    "type":"product"
+  },
+  "plus":{
+    "name": "Goolge Plus",
+    "url" : "http://developers.google.com/+",
+    "type":"product"
+  },
+  "maps":{
+    "name": "Goolge Maps",
+    "url" : "http://developers.google.com/maps",
+    "type":"product"
+  },
+  "maps":{
+    "name": "Goolge Maps",
+    "url" : "http://developers.google.com/maps",
+    "type":"product"
+  },
+  "maps":{
+    "name": "Goolge Maps",
+    "url" : "http://developers.google.com/maps",
+    "type":"product"
+  },
+  "agosto":{
+    "name": "Agosto",
+    "url" : "http://agosto.com",
+    "type":"sponsor"
+  },
+  "stephenfluin":{
+    "name": "Stephen Fluin",
+    "url" : "http://plus.google.com/+StephenFluin",
+    "type":"hero"
+  }
+}

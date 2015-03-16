@@ -55,16 +55,20 @@ if (authData) {
 
 //  Trying to seach the hunt/endpoints and see if the enpoint matches the has value.  Fruitless.  going to bed.
 
-    var huntnode = ref.child('hunt/endpoints/'+hashval);
-    console.log(huntnode);
-    //alert(huntnode.val());
-    // Attach an asynchronous callback to read the data at our posts reference
-    huntnode.once("value", function(snapshot) {
-      console.log(snapshot);  
-      console.log(snapshot.val());
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+
+//pull in json from db ***
+  ref.on("value", function(snapshot) {
+    ref.off("value");
+
+    returnedData = snapshot.val();
+    usersData = returnedData.users;
+    checkPoints = returnedData.checkpoints;
+
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
+
+
 
   } else {
     // Fragment doesn't exist
