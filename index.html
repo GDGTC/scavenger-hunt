@@ -3,17 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Scavenger Hunt</title>
-  <link rel="stylesheet" href="hex2.css">
+  <link rel="stylesheet" href="css/hex2.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
 </head>
-<body>
+<body onhashchange="hashChanged();">
 
 <input id="loginbutton" type="button" value="login" onclick="login();">
 <input id="logoutbutton" type="button" value="logout" onclick="logout();">
-
+<h3>LeaderBoard</h3>
+<div id="leaderboard"></div>
+  <table id="leaderboardTable">
+    <tr>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>
+  </table>
+  <h3>My Badges <span id="whoami"></span></h3>
 <div id="shwrapper"></div>
 
-<script src="hunt.js"></script>
-
+<p style="clear:both">.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>
+<ul>
+ <li><a href="http://dev.gdgtc.com/scavenger-hunt/#agosto">#agosto</a></li>
+ <li><a href="http://dev.gdgtc.com/scavenger-hunt/#angular">#angular</a></li>
+ <li><a href="http://dev.gdgtc.com/scavenger-hunt/#chrome">#chrome</a></li>
+ <li><a href="http://dev.gdgtc.com/scavenger-hunt/#maps">#maps</a></li>
+ <li><a href="http://dev.gdgtc.com/scavenger-hunt/#danbaran">#danbaran</a></li>
+</ul>
+</p>
+<script src="js/hunt.js?v=9"></script>
+<script src="js/leaderboard.js"></script>
+<script>
+  // load the endpoint search from the index page.
+  getEndpoint();
+</script>
 </body>
 </html>

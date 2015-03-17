@@ -55,24 +55,32 @@ function hexDiv(badgename, iseven){
    return ans;
 }
 
+function endpointSortBy(a,b) {
+  if (a.badgetype + a.badgename < b.badgetype + b.badgename)
+     return -1;
+  if (a.badgetype + a.badgename > b.badgetype + b.badgename)
+    return 1;
+  return 0;
+}
+
 function showStatus(){
-  var stateObj = { foo: "bar" };
-  history.replaceState(stateObj, "page 2", "index.html");  
+  // var stateObj = { foo: "bar" };
+  // history.replaceState(stateObj, "page 2", "index.html");  
 
-    ref.on("value", function(snapshot) {
-      myData.off("value"); //stop listening
+  //   ref.on("value", function(snapshot) {
+  //     myData.off("value"); //stop listening
 
-      fbData = snapshot.val();
-      console.log(fbData);
-    });
+  //     fbData = snapshot.val();
+  //     console.log(fbData);
+  //   });
 
 
-    var myData = ref.child("users").child(authData.uid);
+    var myData = ref.child("users").child(authData.uid).child("badges");
     //pull in json from db ***
     myData.on("value", function(snapshot) {
       myData.off("value"); //stop listening
 
-      fbData = snapshot.val();
+      badges = snapshot.val();
 
       badgediv = '<div id="badgediv">';
       rowstart = '<div class="hex-row">';
@@ -80,7 +88,22 @@ function showStatus(){
       i = 1;
       col = 0;
       badgediv += rowstart;
-      for (var badge in fbData.badges){
+
+//      badges = fbData.badges;
+//      badges = badges.sort(endpointSortBy);
+
+      // for (var i = badges.length - 1; i >= 0; i--) {        
+      //   even = col % 2 == 0 ? "":"even";
+      //   badgediv += hexDiv(badges[i], even);
+      //   if (i%3 == 0){
+      //     badgediv += rowend + rowstart;
+      //     col= -1;
+      //   }
+      //   i++; col++;
+
+      // };
+
+      for (var badge in badges){
         even = col % 2 == 0 ? "":"even";
         badgediv += hexDiv(badge, even);
         if (i%3 == 0){
@@ -104,7 +127,7 @@ function showStatus(){
 
 //*****************************************
 //*****************************************
-//  loads on every page... likely not best
+//  Check for endpoint
 //*****************************************
 //*****************************************
 
@@ -133,12 +156,40 @@ function getEndpoint(){
             endpoint: nodeData,
             foundAt: Firebase.ServerValue.TIMESTAMP
           });
+
+          var nodeType = nodeData.type;
+
+          //  save the scavenger hunt item to the user
+          ref.child("users").child(authData.uid).child("badgesByType").child(nodeType).child(hashval).set({          
+            endpoint: nodeData,
+            foundAt: Firebase.ServerValue.TIMESTAMP
+          });
+
+          var badgecounter = 0;
+          var myData = ref.child("users").child(authData.uid).child("badges");
+          myData.orderByChild("type").on("value", function(snapshot) {
+              myData.off("value"); //stop listening
+              badges = snapshot.val();
+              for(x in badges){ badgecounter++;}
+               //  save the info about the user who just logged in
+                ref.child("users").child(authData.uid).update({
+                    provider: authData.provider,    // only using google for this but whatevs
+                    name: authData.google.displayName,
+                    googleObject: authData.google,  // tuck the whole google obj away for later
+                    lastSeen: Firebase.ServerValue.TIMESTAMP,
+                    badgecount : badgecounter
+                });
+               var leaderboard = ref.child("leaderboard").child(authData.uid);
+               leaderboard.setWithPriority({name: authData.google.displayName, score:badgecounter},badgecounter);
+          });
+
+
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
 
-
+  
       showStatus();
 
     } else {
@@ -148,4 +199,41 @@ function getEndpoint(){
   }
 }
 
-getEndpoint();
+// var LEADERBOARD_SIZE = 10;
+
+// // Get the data on a post that has changed
+// var leaderboardRef = ref.child("leaderboard");
+// // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
+// var scoreListView = leaderboardRef.limitToLast(LEADERBOARD_SIZE);
+
+// // Add a callback to handle when updates are made
+// scoreListView.on("value", function(snapshot) {
+//   var scoreList = snapshot.val();
+//   ldrtbl = '<table id="leaderboardTable">';
+
+//   var tbl2 = "";
+//   snapshot.forEach(function(childSnapshot){
+//     tbl2 = "<tr><td>"+childSnapshot.val().name+"</td><td>"+childSnapshot.val().score+"</td></tr>"+ tbl2;
+//   });
+//   ldrtbl += tbl2 + "</table>";
+//   document.getElementById('leaderboard').innerHTML = ldrtbl;
+
+
+// });
+
+function hashChanged(){
+  //alert(location.hash);
+  getEndpoint();
+  showStatus();
+}
+
+
+//  **************************************
+//  **************************************
+//  broke down and am using jQuery
+//  **************************************
+//  **************************************
+
+$(window).on('hashchange', function() {
+  showStatus();
+});

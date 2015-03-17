@@ -1,83 +1,81 @@
 {
-  "polymer" : {
-    "name": "Polymer",
-    "img" : "polymer.png",
-    "url" : "http://polymer-project.com",
-    "type":"product"
+  "agosto" : {
+    "badgename" : "Agosto",
+    "badgetype" : "sponsor",
+    "url" : "http://agosto.com"
   },
-  "cloudcompute":{
-    "name": "Cloud Compute Platform",
-    "img" : "cloudcompute.png",
-    "url" : "http://cloud.google.com/compute",
-    "type":"product"
-  },
-  "angular":{
-    "name": "Angular",
-    "img" : "angular.png",
-    "url" : "http://angular.org",
-    "type":"product"
-  },
-  "appengine":{
-    "name": "App Engine",
-    "img" : "appengine.png",
-    "url" : "http://cloud.google.com/appengine",
-    "type":"product"
-  },
-  "analytics":{
-    "name": "Analytics",
+  "analytics" : {
     "img" : "analytics.png",
-    "url" : "http://cloud.google.com/compute",
-    "type":"product"
+    "badgename" : "Analytics",
+    "badgetype" : "product",
+    "url" : "http://cloud.google.com/compute"
   },
-  "android":{
-    "name": "Android",
+  "android" : {
     "img" : "android.png",
-    "url" : "http://developer.android.com",
-    "type":"product"
+    "badgename" : "Android",
+    "badgetype" : "product",
+    "url" : "http://developer.android.com"
   },
-  "chrome":{
-    "name": "Chrome",
-    "url" : "http://developer.chrome.com",
-    "type":"product"
+  "angular" : {
+    "img" : "angular.png",
+    "badgename" : "Angular",
+    "badgetype" : "product",
+    "url" : "http://angular.org"
   },
-  "cloudplatform":{
-    "name": "Cloud Platform",
-    "url" : "http://cloud.google.com",
-    "type":"product"
+  "appengine" : {
+    "img" : "appengine.png",
+    "badgename" : "App Engine",
+    "badgetype" : "product",
+    "url" : "http://cloud.google.com/appengine"
   },
-  "maps":{
-    "name": "Goolge Maps",
-    "url" : "http://developers.google.com/maps",
-    "type":"product"
+  "chrome" : {
+    "badgename" : "Chrome",
+    "badgetype" : "product",
+    "url" : "http://developer.chrome.com"
   },
-  "plus":{
-    "name": "Goolge Plus",
-    "url" : "http://developers.google.com/+",
-    "type":"product"
+  "cloudcompute" : {
+    "img" : "cloudcompute.png",
+    "badgename" : "Cloud Compute Platform",
+    "badgetype" : "product",
+    "url" : "http://cloud.google.com/compute"
   },
-  "maps":{
-    "name": "Goolge Maps",
-    "url" : "http://developers.google.com/maps",
-    "type":"product"
+  "cloudplatform" : {
+    "badgename" : "Cloud Platform",
+    "badgetype" : "product",
+    "url" : "http://cloud.google.com"
   },
-  "maps":{
-    "name": "Goolge Maps",
-    "url" : "http://developers.google.com/maps",
-    "type":"product"
+  "maps" : {
+    "badgename" : "Goolge Maps",
+    "badgetype" : "product",
+    "url" : "http://developers.google.com/maps"
   },
-  "maps":{
-    "name": "Goolge Maps",
-    "url" : "http://developers.google.com/maps",
-    "type":"product"
+  "plus" : {
+    "badgename" : "Goolge Plus",
+    "badgetype" : "product",
+    "url" : "http://developers.google.com/+"
   },
-  "agosto":{
-    "name": "Agosto",
-    "url" : "http://agosto.com",
-    "type":"sponsor"
+  "polymer" : {
+    "img" : "polymer.png",
+    "badgename" : "Polymer",
+    "badgetype" : "product",
+    "url" : "http://polymer-project.com"
   },
-  "stephenfluin":{
-    "name": "Stephen Fluin",
+  "stephenfluin" : {
+    "badgename" : "Stephen Fluin",
+    "badgetype" : "hero",
     "url" : "http://plus.google.com/+StephenFluin",
-    "type":"hero"
+    "img" : "stephenfluin.png"
+  },
+  "danbaran" : {
+    "badgename" : "Dan Baran",
+    "badgetype" : "hero",
+    "url" : "http://plus.google.com/+DanBaran",
+    "img" : "danbaran.png"
+  },
+  "lloyd" : {
+    "badgename" : "Lloyd Cledwyn",
+    "badgetype" : "hero",
+    "url" : "http://plus.google.com/+LloydCledwyn",
+    "img" : "lloyd.png"
   }
 }
