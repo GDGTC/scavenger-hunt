@@ -64,16 +64,6 @@ function endpointSortBy(a,b) {
 }
 
 function showStatus(){
-  // var stateObj = { foo: "bar" };
-  // history.replaceState(stateObj, "page 2", "index.html");  
-
-  //   ref.on("value", function(snapshot) {
-  //     myData.off("value"); //stop listening
-
-  //     fbData = snapshot.val();
-  //     console.log(fbData);
-  //   });
-
 
     var myData = ref.child("users").child(authData.uid).child("badges");
     //pull in json from db ***
@@ -82,36 +72,36 @@ function showStatus(){
 
       badges = snapshot.val();
 
-      badgediv = '<div id="badgediv">';
-      rowstart = '<div class="hex-row">';
-      rowend = "</div>";
-      i = 1;
-      col = 0;
+      var badgediv = '<div id="badgediv">';
+      var rowstart = '<div class="hex-row">';
+      var rowend = "</div>";
+      var i = 1;
+      var col = 0;
       badgediv += rowstart;
 
-//      badges = fbData.badges;
-//      badges = badges.sort(endpointSortBy);
 
-      // for (var i = badges.length - 1; i >= 0; i--) {        
-      //   even = col % 2 == 0 ? "":"even";
-      //   badgediv += hexDiv(badges[i], even);
-      //   if (i%3 == 0){
-      //     badgediv += rowend + rowstart;
-      //     col= -1;
-      //   }
-      //   i++; col++;
 
-      // };
-
-      for (var badge in badges){
+      snapshot.forEach(function(childSnapshot) {
+        // childData will be the actual contents of the child
+        var childData = childSnapshot.val();
         even = col % 2 == 0 ? "":"even";
-        badgediv += hexDiv(badge, even);
+        badgediv += '<div class="hex ' + even + '"><div class="left"></div><div class="middle"><img src="img/' + childData.endpoint.img + '" class="badgeimg"></div><div class="right"></div></div>';
         if (i%3 == 0){
           badgediv += rowend + rowstart;
           col= -1;
         }
         i++; col++;
-      }
+      });
+
+      // for (var badge in badges){
+      //   even = col % 2 == 0 ? "":"even";
+      //   badgediv += hexDiv(badge, even);
+      //   if (i%3 == 0){
+      //     badgediv += rowend + rowstart;
+      //     col= -1;
+      //   }
+      //   i++; col++;
+      // }
       badgediv += rowend;
       badgediv += "</div>";
 
@@ -140,6 +130,11 @@ function getEndpoint(){
       // Fragment exists
       var hashval = window.location.hash.substring(1);
 
+      if(hashval == "cleardata"){
+        ref.child("users").child(authData.uid).set(null);
+        ref.child("leaderboard").child(authData.uid).set(null);
+      }
+
       //  Check on the endpoint that was passed in the hasvalue
       var huntnode = ref.child('endpoints/'+hashval);
       huntnode.on("value", function(snapshot) {
@@ -157,7 +152,7 @@ function getEndpoint(){
             foundAt: Firebase.ServerValue.TIMESTAMP
           });
 
-          var nodeType = nodeData.type;
+          var nodeType = nodeData.badgetype;
 
           //  save the scavenger hunt item to the user
           ref.child("users").child(authData.uid).child("badgesByType").child(nodeType).child(hashval).set({          
@@ -199,27 +194,6 @@ function getEndpoint(){
   }
 }
 
-// var LEADERBOARD_SIZE = 10;
-
-// // Get the data on a post that has changed
-// var leaderboardRef = ref.child("leaderboard");
-// // Create a view to only receive callbacks for the last LEADERBOARD_SIZE scores
-// var scoreListView = leaderboardRef.limitToLast(LEADERBOARD_SIZE);
-
-// // Add a callback to handle when updates are made
-// scoreListView.on("value", function(snapshot) {
-//   var scoreList = snapshot.val();
-//   ldrtbl = '<table id="leaderboardTable">';
-
-//   var tbl2 = "";
-//   snapshot.forEach(function(childSnapshot){
-//     tbl2 = "<tr><td>"+childSnapshot.val().name+"</td><td>"+childSnapshot.val().score+"</td></tr>"+ tbl2;
-//   });
-//   ldrtbl += tbl2 + "</table>";
-//   document.getElementById('leaderboard').innerHTML = ldrtbl;
-
-
-// });
 
 function hashChanged(){
   //alert(location.hash);
@@ -227,13 +201,3 @@ function hashChanged(){
   showStatus();
 }
 
-
-//  **************************************
-//  **************************************
-//  broke down and am using jQuery
-//  **************************************
-//  **************************************
-
-$(window).on('hashchange', function() {
-  showStatus();
-});

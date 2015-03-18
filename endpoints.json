@@ -2,7 +2,8 @@
   "agosto" : {
     "badgename" : "Agosto",
     "badgetype" : "sponsor",
-    "url" : "http://agosto.com"
+    "url" : "http://agosto.com",
+    "img" : "agosto.png"
   },
   "analytics" : {
     "img" : "analytics.png",
@@ -31,7 +32,8 @@
   "chrome" : {
     "badgename" : "Chrome",
     "badgetype" : "product",
-    "url" : "http://developer.chrome.com"
+    "url" : "http://developer.chrome.com",
+    "img" : "chrome.png"
   },
   "cloudcompute" : {
     "img" : "cloudcompute.png",
@@ -42,17 +44,20 @@
   "cloudplatform" : {
     "badgename" : "Cloud Platform",
     "badgetype" : "product",
-    "url" : "http://cloud.google.com"
+    "url" : "http://cloud.google.com",
+    "img" : "cloudplatform.png"
   },
   "maps" : {
     "badgename" : "Goolge Maps",
     "badgetype" : "product",
-    "url" : "http://developers.google.com/maps"
+    "url" : "http://developers.google.com/maps",
+    "img" : "maps.png"
   },
   "plus" : {
     "badgename" : "Goolge Plus",
     "badgetype" : "product",
-    "url" : "http://developers.google.com/+"
+    "url" : "http://developers.google.com/+",
+    "img" : "plus.png"
   },
   "polymer" : {
     "img" : "polymer.png",
@@ -77,5 +82,11 @@
     "badgetype" : "hero",
     "url" : "http://plus.google.com/+LloydCledwyn",
     "img" : "lloyd.png"
+  },
+  "f134d4c9570f45289b00ab0d29442527" : {
+    "badgename" : "Jeff Williams",
+    "badgetype" : "hero",
+    "url" : "http://umn.edu",
+    "img" : "jeff.png"
   }
 }
