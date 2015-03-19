@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <title>Scavenger Hunt</title>
   <link rel="stylesheet" href="css/hex2.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
   <meta name="viewport" content="width=500, initial-scale=1">
 </head>
 <body onhashchange="hashChanged();">
 
-<input id="loginbutton" type="button" value="login" onclick="login();">
-<input id="logoutbutton" type="button" value="logout" onclick="logout();">
+<div id="loginbutton" class="button google" onclick="login();">Log in with Google to play</div>
+
 <h3>LeaderBoard</h3>
 <div id="leaderboard"></div>
   <table id="leaderboardTable">
@@ -38,6 +39,7 @@
 </ul>
 <a href="#cleardata">CLEAR MY DATA</a>
 </p>
+<input id="logoutbutton" type="button" value="logout" onclick="logout();">
 <script src="js/hunt.js?v=9"></script>
 <script src="js/leaderboard.js"></script>
 <script>

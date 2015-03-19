@@ -1,0 +1,22 @@
+.google {
+  background: rgb(219,74,57) url(../img/button-google.png);
+}
+
+/* BUTTONS */
+.button {
+    font:600 20px/24px "Source Sans Pro", Arial,sans-serif;
+    text-decoration: none;
+    text-align:center;
+    display:block;
+/*    float:left;*/
+    width:300px;
+    height:70px;
+    margin:10px;
+    padding:10px 20px 0;
+    color:#fff;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+}
+.button:hover {opacity:.9;}
+.button:active {box-shadow:inset 0 0 0 100px rgba(0,0,0,.25);}
