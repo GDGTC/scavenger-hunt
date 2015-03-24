@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Scavenger Hunt</title>
-  <link rel="stylesheet" href="css/hex2.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
@@ -12,6 +11,11 @@
 <body onhashchange="hashChanged();">
 
 <div id="loginbutton" class="button google" onclick="login();">Log in with Google to play</div>
+  <h3>My Badges <span id="whoami"></span></h3>
+<div id="shwrapper"></div>
+
+<p style="clear:both">&nbsp;</p>
+<p style="clear:both">&nbsp;</p>
 
 <h3>LeaderBoard</h3>
 <div id="leaderboard"></div>
@@ -21,23 +25,6 @@
       <th>Score</th>
     </tr>
   </table>
-  <h3>My Badges <span id="whoami"></span></h3>
-<div id="shwrapper"></div>
-
-<p style="clear:both">.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>.</p>
-<p>
-<ul>
- <li><a href="http://dev.gdgtc.com/scavenger-hunt/#agosto">#agosto</a></li>
- <li><a href="http://dev.gdgtc.com/scavenger-hunt/#angular">#angular</a></li>
- <li><a href="http://dev.gdgtc.com/scavenger-hunt/#chrome">#chrome</a></li>
- <li><a href="http://dev.gdgtc.com/scavenger-hunt/#maps">#maps</a></li>
- <li><a href="http://dev.gdgtc.com/scavenger-hunt/#danbaran">#danbaran</a></li>
-</ul>
-<a href="#cleardata">CLEAR MY DATA</a>
 </p>
 <input id="logoutbutton" type="button" value="logout" onclick="logout();">
 <script src="js/hunt.js?v=9"></script>

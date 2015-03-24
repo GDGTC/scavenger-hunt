@@ -1,4 +1,4 @@
-  var LEADERBOARD_SIZE = 5;
+  var LEADERBOARD_SIZE = 25;
 
   // Create our Firebase reference
   var scoreListRef = new Firebase('https://devfestmn.firebaseio.com/hunt/leaderboard');
@@ -9,8 +9,30 @@
   // Helper function that takes a new score snapshot and adds an appropriate row to our leaderboard table.
   function handleScoreAdded(scoreSnapshot, prevScoreName) {
     var newScoreRow = $("<tr/>");
-    newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)));
+    scoreSnapshotRef = scoreSnapshot.val();
+//    newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name+" -"+ scoreSnapshot.key())));
+    newScoreRow.append($("<td/>").append('<a href="http://plus.google.com/' + scoreSnapshot.key().substring(7) + '">' + scoreSnapshot.val().name));
     newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
+
+    var badgesRef
+
+    var icons = "";
+
+    var ref = new Firebase('https://devfestmn.firebaseio.com/hunt');
+    var myData = ref.child("users").child(scoreSnapshot.key()).child("badges");
+        //pull in json from db ***
+    myData.on("value", function(snapshot) {
+      myData.off("value"); //stop listening
+      var badgeSnapshot = snapshot.val();
+
+      snapshot.forEach(function(childSnapshot) {
+          // childData will be the actual contents of the child
+          var childData = childSnapshot.val();
+          icons += '<img src="/img/' + childData.endpoint.img + '?v=1" class="leaderboardbadgeimg" />';
+        });
+      newScoreRow.append($("<td/>").append(icons));
+    });
+
 
     // Store a reference to the table row so we can get it again later.
     htmlForPath[scoreSnapshot.key()] = newScoreRow;

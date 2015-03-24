@@ -1,16 +1,35 @@
+body {
+    background-image: url("../img/bg.png");
+    background-size: 600px 600px;
+}
+
+h2, h3, .shwrapper {
+ /*   text-align: center;*/
+  padding-left:  40px;
+}
+
+img
+{  border-style: none;
+}
+
+#shwrapper{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
 .google {
   background: rgb(219,74,57) url(../img/button-google.png);
 }
 
 /* BUTTONS */
 .button {
-    font:600 20px/24px "Source Sans Pro", Arial,sans-serif;
+    font:600 40px/50px "Source Sans Pro", Arial,sans-serif;
     text-decoration: none;
     text-align:center;
     display:block;
 /*    float:left;*/
     width:300px;
-    height:70px;
+    height:180px;
     margin:10px;
     padding:10px 20px 0;
     color:#fff;
@@ -20,3 +39,53 @@
 }
 .button:hover {opacity:.9;}
 .button:active {box-shadow:inset 0 0 0 100px rgba(0,0,0,.25);}
+
+.badgeimg {
+  position: relative;
+  width: 80px;
+  left: -9px;
+  top: 12px;
+}
+
+th, td {
+  text-align: center;
+}
+
+img.leaderboardbadgeimg {
+  height: 20px;
+  margin-left: 5px;
+}
+
+
+.hex {
+    float: left;
+    margin-right: -26px;
+    margin-bottom: -50px;
+}
+.hex .left {
+    float: left;
+    width: 0;
+    border-right: 30px solid #fff;
+    border-top: 52px solid transparent;
+    border-bottom: 52px solid transparent;
+}
+.hex .middle {
+    float: left;
+    width: 60px;
+    height: 104px;
+    background: #fff;
+}
+.hex .right {
+    float: left;
+    width: 0;
+    border-left: 30px solid #fff;
+    border-top: 52px solid transparent;
+    border-bottom: 52px solid transparent;
+}
+.hex-row {
+    clear: left;
+}
+.hex.even {
+    margin-top: 53px;
+}
+

@@ -41,8 +41,8 @@ function authHandler(error, authData) {
 //  better to have user action call a popup for browser security
 function login(){
     ref.authWithOAuthPopup("google", authHandler, {
-      remember: "default", 
-      scope: "email"
+      remember: "default"
+      ,scope: "email"
     });
 }
 function logout(){
@@ -85,7 +85,7 @@ function showStatus(){
         // childData will be the actual contents of the child
         var childData = childSnapshot.val();
         even = col % 2 == 0 ? "":"even";
-        badgediv += '<div class="hex ' + even + '"><div class="left"></div><div class="middle"><img src="img/' + childData.endpoint.img + '" class="badgeimg"></div><div class="right"></div></div>';
+        badgediv += '<div class="hex ' + even + '"><div class="left"></div><div class="middle"><a href="' + childData.endpoint.url +  '"> <img src="img/' + childData.endpoint.img + '" class="badgeimg"></a></div><div class="right"></div></div>';
         if (i%3 == 0){
           badgediv += rowend + rowstart;
           col= -1;
